@@ -19,9 +19,7 @@ root/pass4root
 Работа с юзъри
 https://www.raspberrypi.org/documentation/linux/usage/users.md
 
-pi е sudoer т.е. може да изпълнява команди като root (със sudo) 
-
-и да се превключва към root чрез sudo su
+pi е sudoer т.е. може да изпълнява команди като root (със sudo) и да се превключва към root чрез sudo su
 
 su userName - логва под юзър userName
 exit - logout за текущия юзър
@@ -46,9 +44,7 @@ bob   ALL = NOPASSWD: ALL
 
 
 
-VNC (Virtual Network Computing): 
-
-https://www.raspberrypi.org/documenta...
+VNC (Virtual Network Computing): https://www.raspberrypi.org/documenta...
 
 
 sudo service ssh status
@@ -76,14 +72,10 @@ su + Tab + Tab - показва всички команди започващи �
 -еднобуквен флаг -l -a -la
 --многобуквен флаг --help --version
 
-clear
-	чисти терминала
-reset
-	рестартира конзолата
-wall Message
-	разпространява съобщение до терминалите на юзърите
-echo anyMessage
-	извежда съобщение на екрана
+clear	чисти терминала
+reset	рестартира конзолата
+wall Message	разпространява съобщение до терминалите на юзърите
+echo anyMessage	извежда съобщение на екрана
 
 
 man  - ръководство на команда или програма
@@ -126,9 +118,7 @@ funcName(){
 
 export PS1="$PS1 \$(funcName)\$" 
 
-who - показва колко виртуални конзоли се използват и колко 
-
-юзъра има в системата
+who - показва колко виртуални конзоли се използват и колко юзъра има в системата
 
 
 СИСТЕМНИ
@@ -249,26 +239,18 @@ df - колко место ти остава на диска (disk free)
 по-добре да се ползва гуи - джи партед
 
 sudo !! - изпълнява последна команда със sudo отпред
-За да не се записват използваните команди в bash history преди 
-
-комадите се изписва интервал
+За да не се записват използваните команди в bash history преди комадите се изписва интервал
 
 
 Работа с файлове
 	Създаване на файлове
 touch fileName - създава файл fileName
 > fileName - създава файл fileName
-> path/fileName  - създава файл fileName в място указано от 
-
-path
+> path/fileName  - създава файл fileName в място указано от path
 
 ls -l > dirCont.txt ще запише резултата от ls -l във файл
-pwd > dirCont.txt ще запише рез в dirCont.txt изтривайки 
-
-старото
-ls -l >> dirCont.txt ще добави резултата към съдържанието на 
-
-dirCont.txt
+pwd > dirCont.txt ще запише рез в dirCont.txt изтривайки старото
+ls -l >> dirCont.txt ще добави резултата към съдържанието на dirCont.txt
 
 echo anyText > fileName - записва текста във fileName
 
@@ -286,14 +268,10 @@ vi fileName    - отваря в редактора vi
 Копиране, преместване, преименуване, изтриване, сравняване
 
 cp source destination копира сорс в дестинейшън
-сорс може да е само името на файла, а дестинейшън само пътя до 
-
-новото място
+сорс може да е само името на файла, а дестинейшън само пътя до новото място
 
 mv source destination премества от сорс в дестинейшън
-mv  се използва и за преименуване сорс текущо име на файл 
-
-дестинешън новото име на файл
+mv  се използва и за преименуване сорс текущо име на файл дестинешън новото име на файл
 
 rm fileName - изтрива fileName
 rm *  - изтрива всички файлове от дир
@@ -312,15 +290,7 @@ wc fileName  - показва колко реда, думи и символи и
 file fileName.txt дава инфо за типа на fileName.txt
 
 scp user@10.0.0.32:/some/path/file.txt
-	Copies a file over SSH. Can be used to download a file 	
-
-from a PC to the Raspberry Pi. user@10.0.0.32 is the 	
-
-username and local IP address of the PC, and 	
-
-/some/path/file.txt is the path and file name of the file 	
-
-on the PC
+	Copies a file over SSH. Can be used to download a file 	from a PC to the Raspberry Pi. user@10.0.0.32 is the 	username and local IP address of the PC, and 	/some/path/file.txt is the path and file name of the file 	on the PC
 
 tail -n 10 fileName -  показва последните 10 реда
 
@@ -368,9 +338,7 @@ grep text fileName - търси текст във файл
 grep -n text fileName - показва номера на реда и самия ред
 grep -v text fileName - показва редовете без съвпадение
 cat /var/log/syslog | grep cron | grep Feb 11 | vim -
-Ще търси в syslog записи съдържащи cron и от тези записи ще 
-
-покаже само съдържащите Feb 11. Резултатът ще го отвори в vim
+Ще търси в syslog записи съдържащи cron и от тези записи ще покаже само съдържащите Feb 11. Резултатът ще го отвори в vim
 
 
 
@@ -396,24 +364,12 @@ mtr -ping i trace route
 /бин тука са командите
 
 w
-15:03 up 7 days, 2 min,  4 users,  load average: 1.26, 1.14, 
-
-1.10
-USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU 
-
-WHAT
-pi       tty1                      30May17 72days  0.66s  0.61s 
-
--bash
-pi       :0       :0               30May17 ?xdm?   7days  3.33s 
-
-/usr/bin/lxses
-pi       pts/1    192.168.1.101    14:13    0.00s  0.69s  0.03s 
-
-w
-pi       pts/2    192.168.1.146    09:34    4:38m  0.63s  0.63s 
-
--bash
+15:03 up 7 days, 2 min,  4 users,  load average: 1.26, 1.14, 1.10
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+pi       tty1                      30May17 72days  0.66s  0.61s -bash
+pi       :0       :0               30May17 ?xdm?   7days  3.33s /usr/bin/lxses
+pi       pts/1    192.168.1.101    14:13    0.00s  0.69s  0.03s w
+pi       pts/2    192.168.1.146    09:34    4:38m  0.63s  0.63s -bash
 Показва кой се е логнал
 
 yes Text - ще отпечатва заклино този текс спира се ctrl+z
@@ -431,9 +387,7 @@ factor - разлага числото на множители
 factor 18 - връща 18: 2 3 3
 
 
-mtr google.com - my traceroute алтернатива на пинг (нема я) q-
-
-quit
+mtr google.com - my traceroute алтернатива на пинг (нема я) q-quit
 ping 8.8.8.8
 ping google.com
 
@@ -445,9 +399,7 @@ echo 'PESHI' | tr '[:upper:]' '[:lower:]' връща peshi
 
 
 uname -a - показва инфо за ядро и ситема
-Linux raspberrypi 4.4.50-v7+ #970 SMP Mon Feb 20 19:18:29 GMT 
-
-2017 armv7l GNU/Linux
+Linux raspberrypi 4.4.50-v7+ #970 SMP Mon Feb 20 19:18:29 GMT 2017 armv7l GNU/Linux
  lsb_release -a
 No LSB modules are available.
 Distributor ID: Raspbian
@@ -462,27 +414,13 @@ ping 8.8.8.8 | nl - nl номерира редовете
 
 
 
-apt-get update: Synchronizes the list of packages on your 
+apt-get update: Synchronizes the list of packages on your system to the list in the repositories. Use it before installing new packages to make sure you are installing the latest version.
 
-system to the list in the repositories. Use it before 
+apt-get upgrade: Upgrades all of the software packages you have installed.
 
-installing new packages to make sure you are installing the 
+find / -name example.txt: Searches the whole system for the file example.txt and outputs a list of all directories that contain the file.
 
-latest version.
-
-apt-get upgrade: Upgrades all of the software packages you have 
-
-installed.
-
-find / -name example.txt: Searches the whole system for the 
-
-file example.txt and outputs a list of all directories that 
-
-contain the file.
-
-nano example.txt: Opens the file example.txt in the Linux text 
-
-editor Nano.
+nano example.txt: Opens the file example.txt in the Linux text editor Nano.
 
 
 
@@ -490,37 +428,19 @@ editor Nano.
 Networking and Internet Commands
 
 ifconfig
-	To check the status of the wireless connection you 	
-
-are using  (to see if wlan0 has acquired an IP address)
+	To check the status of the wireless connection you 	are using  (to see if wlan0 has acquired an IP address)
 iwconfig
 	To check which network the wireless adapter is using.
 iwlist wlan0 scan
-	Prints a list of the currently available wireless 	
-
-networks
+	Prints a list of the currently available wireless 	networks
 iwlist wlan0 scan | grep ESSID
-	Use grep along with the name of a field to list only 
-
-the 	fields you need (for example to just list the ESSIDs)
+	Use grep along with the name of a field to list only the 	fields you need (for example to just list the ESSIDs)
 nmap
-	Scans your network and lists connected devices, port 	
-
-number, protocol, state (open or closed) operating system, 	
-
-MAC addresses, and other information
+	Scans your network and lists connected devices, port 	number, protocol, state (open or closed) operating system, 	MAC addresses, and other information
 ping
-	Tests connectivity between two devices connected on a 	
-
-network. For example, ping 10.0.0.32 will send a packet to 	
-
-the device at IP 10.0.0.32 and wait for a response. It 	also 
-
-works with website addresses
+	Tests connectivity between two devices connected on a 	network. For example, ping 10.0.0.32 will send a packet to 	the device at IP 10.0.0.32 and wait for a response. It 	also works with website addresses
 wget http://www.website.com/example.txt
-	Downloads the file example.txt from the web and saves 
-
-it 	to the current directory
+	Downloads the file example.txt from the web and saves it 	to the current directory
 
 
 
@@ -529,9 +449,7 @@ System Information Commands
 cat /proc/meminfo
 	Shows details about your memory.
 cat /proc/partitions
-	Shows the size and number of partitions on your 
-
-SDcard/HDD
+	Shows the size and number of partitions on your SDcard/HDD
 cat /proc/version
 	Shows you which version of the RPi you are using.
 df -h
@@ -539,9 +457,7 @@ df -h
 df /
 	Shows how much free disk space is available.
 dpkg – –get–selections | grep XXX
-      Shows all of the installed packages that are related to 
-
-XXX
+      Shows all of the installed packages that are related to XXX
 dpkg – –get–selections
 	Shows all of your installed packages.
 free
@@ -560,21 +476,13 @@ vcgencmd get_mem arm && vcgencmd get_mem gpu
 
 Linux: переменные окружения (pi[at se samo s главни букви)
 echo $HOME - ]e otpe`ata 
-HOME=/root - ще смени стойността, ако с-мата е наст да полз 
-
-export
+HOME=/root - ще смени стойността, ако с-мата е наст да полз export
 export HOME=/root - по-добре да се прави така
 
 echo $EDITOR - съдържа редактор по подразбиране
 export EDITOR=nano - задава редактор по подразбиране
-crontab -e - ще отвори файл с настройки на програмата кронтап в 
-
-редактора по подразбиране
-export EDITOR=vim crontab -e -ще отвори файл с настройки на 
-
-програмата кронтап в редактора vim, но редактора по 
-
-подразбиране няма да е променен (не работи в RPi)
+crontab -e - ще отвори файл с настройки на програмата кронтап в редактора по подразбиране
+export EDITOR=vim crontab -e -ще отвори файл с настройки на програмата кронтап в редактора vim, но редактора по подразбиране няма да е променен (не работи в RPi)
 
 
 whereis bash или посмотрите finding bash
@@ -582,9 +490,7 @@ whereis bash или посмотрите finding bash
 
 Програмата Cron - изпълнява команди по разписание
 
-crontab - специален файл, който се създава за всеки потребител 
-
-и указва кога да се изпълняват тези и онези кома0нди
+crontab - специален файл, който се създава за всеки потребител и указва кога да се изпълняват тези и онези кома0нди
 
 
 
@@ -678,11 +584,7 @@ sudo service kmod start
 
 
 
-It will ask you few questions. Answer Yes for all of them. 
-
-Finally to get your CPU temperature type sensors in your 
-
-terminal.
+It will ask you few questions. Answer Yes for all of them. Finally to get your CPU temperature type sensors in your terminal.
 
 
 
@@ -695,11 +597,7 @@ cd test2 - влиза в дир-та test2
 mkdir ../test3 - създава дир test3 в родителската дир
 ls .. - листва родителската дир
 UP key
-	Pressing the UP key will print the last command entered 
-
-into the command prompt. This is a quick way to repeat previous 
-
-commands or make corrections to commands.
+	Pressing the UP key will print the last command entered into the command prompt. This is a quick way to repeat previous commands or make corrections to commands.
 
 
 	  WiringPi
@@ -766,22 +664,16 @@ gpio write 25 0  - сетва ниво 0 на пин 25
 
 Създаване на алиаси
 
-$ alias bedroom='gpio write 2 1; sleep 1; gpio write 2 0; gpio 
-
-readall'
+$ alias bedroom='gpio write 2 1; sleep 1; gpio write 2 0; gpio readall'
 
 или
 
-$ alias mazze='gpio write 2 1 && sleep 1 && gpio write 2 0 && 
-
-gpio readall'
+$ alias mazze='gpio write 2 1 && sleep 1 && gpio write 2 0 && gpio readall'
 
 
 Създаване на постоянни алиаси
 
-$ echo 'alias bedroom="gpio write 2 1; sleep 1; gpio write 2 0; 
-
-gpio readall"' >> ~/.bashrc
+$ echo 'alias bedroom="gpio write 2 1; sleep 1; gpio write 2 0; gpio readall"' >> ~/.bashrc
 $ . ~/bashrc - презарежда .bashrc т.е. обкръжението bash
 
 
@@ -811,33 +703,13 @@ $ unalias aliasName
 
 (при някои дистрибуции нивата се намират в /etc/rc.d)
 
-Например при изключване компютъра, се изпълняват всички 
+Например при изключване компютъра, се изпълняват всички скриптове в папка rc0.d
 
-скриптове в папка rc0.d
-
-Самите скриптове (по-точно сценариите) в тази папка няма, а има 
-
-само връзки към файлове, които лежат в папка /etc/init.d. Тези 
-
-сценарии изпълняват различни задачи, в зависимост от параметъра 
-
-start или stop (например /etc/init.d/reboot start и 
-
-/etc/init.d/reboot stop са различни команди, а 
-
-/etc/init.d/reboot въобще няма да работи).
-Ако первая буква във връзката е S, то на сценария се подава 
-
-параметър start, а ако стои буква K (от kill), то параметърът 
-
-ще е stop. Цифра след буква указва реда на изпълнение на  
-
-сценария.
+Самите скриптове (по-точно сценариите) в тази папка няма, а има само връзки към файлове, които лежат в папка /etc/init.d. Тези сценарии изпълняват различни задачи, в зависимост от параметъра start или stop (например /etc/init.d/reboot start и /etc/init.d/reboot stop са различни команди, а /etc/init.d/reboot въобще няма да работи).
+Ако первая буква във връзката е S, то на сценария се подава параметър start, а ако стои буква K (от kill), то параметърът ще е stop. Цифра след буква указва реда на изпълнение на  сценария.
 
 Преминаваме към практика
-За добавим команди изпълняване при стартиране на ОС, трябва да 
-
-ги добавим във файл /etc/rc.local.
+За добавим команди изпълняване при стартиране на ОС, трябва да ги добавим във файл /etc/rc.local.
 
 sudo nano /etc/rc.local
 
@@ -859,9 +731,7 @@ exit 0
 http://tuksik.ru/auto-start-and-shutdown/
 
 
-Для того, что бы команды выполнялись перед выключением или 
-
-перезагрузкой нам нужно создать сценарий в папке /etc/init.d
+Для того, что бы команды выполнялись перед выключением или перезагрузкой нам нужно создать сценарий в папке /etc/init.d
 sudo nano /etc/init.d/имя_сценария
 
  ____________ ___________________
@@ -919,9 +789,7 @@ $ ./hello
 ~$ var3=`cat txt`  -> присвоява резултата от cat txt
 ~$ echo "тoва ще изпълни командата ls $(ls)"
 
-В bash има и няколко специални променливи, които се използват 
-
-за аргументите на скрипта за обвивката.
+В bash има и няколко специални променливи, които се използват за аргументите на скрипта за обвивката.
 
 $0       - име на команда
 $1 до $9 - аргументите на скрипта
@@ -931,9 +799,7 @@ $#       - броят на аргументите от командния ред
 
 
 
-Друг начин за деклариране на променливи е командата declare. 
-
-Синтаксисът на тази команда е:
+Друг начин за деклариране на променливи е командата declare. Синтаксисът на тази команда е:
 
 declare -тип име-на-променливата
 
