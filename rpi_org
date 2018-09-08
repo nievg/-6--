@@ -1,0 +1,973 @@
+Raspberry Pi 3 CLI commands
+
+ssh connect via PuTTy
+ip address
+port 22(default)
+
+Default u/p for Raspberry PI 3 via ssh
+user: pi
+pass: raspberry
+
+current pass
+pi/pass4raspnew
+root/pass4root
+
+
+
+
+
+Работа с юзъри
+https://www.raspberrypi.org/documentation/linux/usage/users.md
+
+pi е sudoer т.е. може да изпълнява команди като root (със sudo) 
+
+и да се превключва към root чрез sudo su
+
+su userName - логва под юзър userName
+exit - logout за текущия юзър
+
+adduser
+useradd
+
+sudo adduser bob - ще пита за pass, но може да се остави празна
+sudo userdel bob - премахва юзъра bob
+sudo userdel -r bob - премахва юзъра bob и му изтрива хоум дира
+
+passwd - променя паролата на curUs (текущия юзър)
+sudo passwd root - променя pass на root, ако curUs е sudoer
+sudo passwd bob -d -премахва паролата на юзъра bob
+
+Добавяне на sudoer
+sudo visudo - отваря файл /etc/sudoers.tmp в нано
+# User privilege specification
+root  ALL=(ALL:ALL) ALL
+bob   ALL = NOPASSWD: ALL
+:wq
+
+
+
+VNC (Virtual Network Computing): 
+
+https://www.raspberrypi.org/documenta...
+
+
+sudo service ssh status
+sudo raspi-config
+	отваря настройките на raspberry pi 3
+
+
+Terminal
+
+user@computerName ~ $ стандартен промпт на терминал и ssh
+$ - промпт на обикновен юзър
+# - промпт на super user
+~ - home директорията на юзера
+/ - root директорията
+/ - root
+~ - /home/юзърНейм
+../ - родителска директория
+./ текуща директория
+Tab - автоматично дописване
+su + Tab + Tab - показва всички команди започващи със su
+
+
+
+
+-еднобуквен флаг -l -a -la
+--многобуквен флаг --help --version
+
+clear
+	чисти терминала
+reset
+	рестартира конзолата
+wall Message
+	разпространява съобщение до терминалите на юзърите
+echo anyMessage
+	извежда съобщение на екрана
+
+
+man  - ръководство на команда или програма
+man units - дробни и кратни единици 10^-24 10^18
+man ascii - показва аски таблицата
+
+alt + . връща ключове от предишни команди
+cd ../chap2 && ls -l
+cd ../chap2; ls -l
+	горните 2 записа връщат един и същ резултат
+up/down key - прелиства последните команди
+Ctrl + L clear
+Ctrl + A - премества курсора в началото на реда (emacs)
+Ctrl + E - премества курсора в края на реда
+Ctrl + B - премества курсора 1 позиция назад
+Ctrl + F - премества курсора 1 позиция напред
+
+Alt + B - премества курсора 1 дума назад
+Alt + F - премества курсора 1 дума напред
+Ctrl + W - трие всичко от курсора до първия интервал в ляво
+Ctrl + D -
+
+Ctrl + X + + E
+ping -c4 8.8.8.8 ще пусне само 4 пинга
+
+
+.bashrc - файл с настройки на шела за юзъра (намира се в ~)
+alias newCmdName='commands'
+alias lal='ls -l'
+alias temperature='/opt/vc/bin/vcgencmd measure_temp'
+source ~/bashrc - ще презареди файла с настройките в шела
+/bin - съдържа шел команди и други основни инструменти
+
+настройка приветствия шелла 
+добавяне в края на файла .bashrc export PS1='hello world'
+echo "export PS1='helloWorld'" >> .bashrc
+export PS1="\u \w $" \u - юзерИме \w - pyt
+funcName(){
+}
+
+export PS1="$PS1 \$(funcName)\$" 
+
+who - показва колко виртуални конзоли се използват и колко 
+
+юзъра има в системата
+
+
+СИСТЕМНИ
+set -o
+	показва системни настройки
+
+poweroff
+	To shutdown immediately
+shutdown -h now
+	To shutdown immediately
+shutdown -h 01:22
+	To shutdown at 1:22 AM
+shutdown -c
+	to cancel shutdown
+reboot
+	To reboot immediately
+raspi-config
+	Opens the configuration settings menu.
+startx
+	Opens the GUI (Graphical User Interface).
+uptime
+	показва колко време работи с-мата без спиране и ресет
+date
+	връща Thu 10 Aug 22:58:17 EEST 2017
+hostname
+	показва името на компа в мрежата
+/opt/vc/bin/vcgencmd measure_temp
+	temp=57.5'C
+
+
+ps - показва списък на програмите изпълнявани в момента
+
+  PID TTY          TIME CMD
+ 9540 pts/1    00:00:00 sudo
+ 9544 pts/1    00:00:00 su
+ 9549 pts/1    00:00:01 bash
+12824 pts/1    00:00:00 sort
+12929 pts/1    00:00:00 python
+12921 pts/1    00:00:00 ps
+
+kill -9 12929 - Killed python
+ps -e  - списък
+
+pkill имеНаПроцес
+
+
+~./bash-history
+
+
+df - показва разделите на диска
+sudo apt-get install ghex - ]e instalira ghex
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get remove
+
+ps aux - sistemni danni
+
+
+
+
+
+
+
+
+ifconfig - показва настройките на мрежата
+iwconfig - показва настройките на wifi
+
+
+Работа с директории
+
+
+
+pwd  - посочва дир, в която се намираме
+
+ls - списък на дир, в която се намираме
+ls -a показва всички файлове
+ls -l показва детайли за файловете
+ls -t показва файловете сортирани по време в обратен ред
+ls -l -a показва детайли за всички файлове
+ls -al == ls -la == ls -l -a == ls -a -l
+ls path/dirname - списък на директорията dirname
+ls dir1 dir2 dir3 - показва съдържанието и на трите дир
+ls cron* - показва съдържанието на всички дир започващи с cron
+
+
+tree - показва дървовидна структура на директориите
+tree / - ще те вкара в кофти цикъл
+mkdir dirname - създава директория dirname
+rmdir dirName - изтрива дир dirName (ако е празна)
+rm -r dirName - изтрива dirName и съдържанието и
+rm -r Path/dirName - изтрива dirName (и съдържанието и) в Path
+mv dirName Path - премества dirName в Path
+mv oldDirName newDirName - преименува директория
+cp -r dirName dirNameNew копира dirName в същата дир
+cp -r dirName Path - копира dirName в Path
+mkdir "two words" - създава дир съдържаща интервал
+
+Пример
+cp -r dir1 dir2 - създава dir2 - копие на dir1
+mv dir2 dir1/dir2 - премества копието dir2 в оригинала dir1
+ERRORS{
+cp -r dir1 dir1/dir2 - не може dir1 да се копира в себе си
+mv dir2 dir1 - (error) dir1 съществува
+}
+
+
+cd dirname - влизане в дир dirname
+cd .. - връщане в родителската дир (или указва относителен път)
+cd /  - отива в кореновата директория (или указва абс. път)
+cd ~  - отива в home директория на юзъра /home/pi (абс. път)
+cd -  - връша се в предишната директория
+cd "two words" - влиза в дир съдържаща интервал
+cd two\ words  - влиза в дир съдържаща интервал
+cd two\ words/ - влиза в дир съдържаща интервал
+
+
+df - колко место ти остава на диска (disk free)
+по-добре да се ползва гуи - джи партед
+
+sudo !! - изпълнява последна команда със sudo отпред
+За да не се записват използваните команди в bash history преди 
+
+комадите се изписва интервал
+
+
+Работа с файлове
+	Създаване на файлове
+touch fileName - създава файл fileName
+> fileName - създава файл fileName
+> path/fileName  - създава файл fileName в място указано от 
+
+path
+
+ls -l > dirCont.txt ще запише резултата от ls -l във файл
+pwd > dirCont.txt ще запише рез в dirCont.txt изтривайки 
+
+старото
+ls -l >> dirCont.txt ще добави резултата към съдържанието на 
+
+dirCont.txt
+
+echo anyText > fileName - записва текста във fileName
+
+touch file1 file2 file3 - создает три файла
+
+echo 'int main(){printf("Я скомпилировался в Расп");}' > code.c
+gcc -include stdio.h code.c -o code.exe
+./code.exe
+
+nano fileName  - отваря в редактора нано
+gedit fileName - отваря в редактора gedit
+vi fileName    - отваря в редактора vi
+
+
+Копиране, преместване, преименуване, изтриване, сравняване
+
+cp source destination копира сорс в дестинейшън
+сорс може да е само името на файла, а дестинейшън само пътя до 
+
+новото място
+
+mv source destination премества от сорс в дестинейшън
+mv  се използва и за преименуване сорс текущо име на файл 
+
+дестинешън новото име на файл
+
+rm fileName - изтрива fileName
+rm *  - изтрива всички файлове от дир
+touch file1 file2 file3 - создает три файла
+rm file* - изтрива файлове file1 file2 и file3
+cmp source dest - сравнява файлове
+
+Четене на файлове
+cat fileName показва съдържанието на файла fileName 
+cat fileName | head -2 - показва първите 2 реда от файла
+cat fileName | tail -5 - показва последните 5 реда от файла
+cat fileName | tail -5 | head -2 - първите 2 от последните 5
+
+tac - показва файла, с редове отдолу нагоре
+wc fileName  - показва колко реда, думи и символи има във файла
+file fileName.txt дава инфо за типа на fileName.txt
+
+scp user@10.0.0.32:/some/path/file.txt
+	Copies a file over SSH. Can be used to download a file 	
+
+from a PC to the Raspberry Pi. user@10.0.0.32 is the 	
+
+username and local IP address of the PC, and 	
+
+/some/path/file.txt is the path and file name of the file 	
+
+on the PC
+
+tail -n 10 fileName -  показва последните 10 реда
+
+
+date - извежда текущата дата и час
+
+echo 'date; pwd; ls -l' > cmd.txt
+sh cmd.txt - ще изпълни командите в cmd.txt
+sh cmd.txt > dirCont.txt - ще запише рез-та в dirCont.txt
+./cmd.txt - ще изпълни командите в cmd.txt
+
+
+
+chmod 777 file.ext - OwnerGroupOthers rwx
+	r-четене w-запис x-изпълнение флаговете са двоични :)
+r=4; w=2; x=1
+chmode 777 * установява права за всички файлове в дир 
+chmode -R 741 * - задава права и за поддир -R - рекурсивно
+
+Наверно стоит дополнить что rwx является флаги т.е.
+
+rwx   111   7
+rw-   110   6
+r-x   101   5
+r--   100   4
+-wx   011   3
+-w-   010   2
+--x   001   1
+---   000   0
+
+С другими словами
+если флаг поднять, то
+r = 4
+w = 2
+x = 1
+не поднятый флаг равняется нулю
+тогда
+прав = r + w + x
+
+
+
+
+
+grep text fileName - търси текст във файл
+grep -n text fileName - показва номера на реда и самия ред
+grep -v text fileName - показва редовете без съвпадение
+cat /var/log/syslog | grep cron | grep Feb 11 | vim -
+Ще търси в syslog записи съдържащи cron и от тези записи ще 
+
+покаже само съдържащите Feb 11. Резултатът ще го отвори в vim
+
+
+
+
+
+tar -cf arc.tar subFolder/ архивира субфолдера във arc.tar
+zip -r arcZIP subDir/ архивира subDir в arcZip
+sudo apt-get install zip зипа го нема на пи-то
+unzip arcZIP
+
+find 
+sort
+
+
+
+screenfetch
+pstree
+tree / -kofti cikyl
+top
+
+
+mtr -ping i trace route
+/бин тука са командите
+
+w
+15:03 up 7 days, 2 min,  4 users,  load average: 1.26, 1.14, 
+
+1.10
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU 
+
+WHAT
+pi       tty1                      30May17 72days  0.66s  0.61s 
+
+-bash
+pi       :0       :0               30May17 ?xdm?   7days  3.33s 
+
+/usr/bin/lxses
+pi       pts/1    192.168.1.101    14:13    0.00s  0.69s  0.03s 
+
+w
+pi       pts/2    192.168.1.146    09:34    4:38m  0.63s  0.63s 
+
+-bash
+Показва кой се е логнал
+
+yes Text - ще отпечатва заклино този текс спира се ctrl+z
+du -h -max - pokazwa fajlowe papki
+expr 2+3 - връща 2+3
+expr 2 + 3 - връща 5
+expr 2 - 6 - връща -4
+expr 3 / 2 - връща 1
+expr 3 \* 4  - връща 12 
+
+look math - връща думи с math (нема я)
+espeak - изговаря думи на английски (нема я)
+sudo apt-get install espeak
+factor - разлага числото на множители
+factor 18 - връща 18: 2 3 3
+
+
+mtr google.com - my traceroute алтернатива на пинг (нема я) q-
+
+quit
+ping 8.8.8.8
+ping google.com
+
+
+alias ss==ls дефинира команди ss ще работи като ls
+
+echo 'lol' | tr 'l' 'w' заменя в изходния поток
+echo 'PESHI' | tr '[:upper:]' '[:lower:]' връща peshi
+
+
+uname -a - показва инфо за ядро и ситема
+Linux raspberrypi 4.4.50-v7+ #970 SMP Mon Feb 20 19:18:29 GMT 
+
+2017 armv7l GNU/Linux
+ lsb_release -a
+No LSB modules are available.
+Distributor ID: Raspbian
+Description:    Raspbian GNU/Linux 8.0 (jessie)
+Release:        8.0
+Codename:       jessie
+
+ping 8.8.8.8 | nl - nl номерира редовете
+
+
+
+
+
+
+apt-get update: Synchronizes the list of packages on your 
+
+system to the list in the repositories. Use it before 
+
+installing new packages to make sure you are installing the 
+
+latest version.
+
+apt-get upgrade: Upgrades all of the software packages you have 
+
+installed.
+
+find / -name example.txt: Searches the whole system for the 
+
+file example.txt and outputs a list of all directories that 
+
+contain the file.
+
+nano example.txt: Opens the file example.txt in the Linux text 
+
+editor Nano.
+
+
+
+
+Networking and Internet Commands
+
+ifconfig
+	To check the status of the wireless connection you 	
+
+are using  (to see if wlan0 has acquired an IP address)
+iwconfig
+	To check which network the wireless adapter is using.
+iwlist wlan0 scan
+	Prints a list of the currently available wireless 	
+
+networks
+iwlist wlan0 scan | grep ESSID
+	Use grep along with the name of a field to list only 
+
+the 	fields you need (for example to just list the ESSIDs)
+nmap
+	Scans your network and lists connected devices, port 	
+
+number, protocol, state (open or closed) operating system, 	
+
+MAC addresses, and other information
+ping
+	Tests connectivity between two devices connected on a 	
+
+network. For example, ping 10.0.0.32 will send a packet to 	
+
+the device at IP 10.0.0.32 and wait for a response. It 	also 
+
+works with website addresses
+wget http://www.website.com/example.txt
+	Downloads the file example.txt from the web and saves 
+
+it 	to the current directory
+
+
+
+System Information Commands
+
+cat /proc/meminfo
+	Shows details about your memory.
+cat /proc/partitions
+	Shows the size and number of partitions on your 
+
+SDcard/HDD
+cat /proc/version
+	Shows you which version of the RPi you are using.
+df -h
+	Shows information about the available disk space.
+df /
+	Shows how much free disk space is available.
+dpkg – –get–selections | grep XXX
+      Shows all of the installed packages that are related to 
+
+XXX
+dpkg – –get–selections
+	Shows all of your installed packages.
+free
+	Shows how much free memory is available.
+hostname -I
+	Shows the IP address of your Raspberry Pi
+lsusb
+	Lists USB hardware connected to your Raspberry Pi
+vcgencmd measure_temp
+	Shows the temperature of the CPU
+
+vcgencmd get_mem arm && vcgencmd get_mem gpu
+	Shows the memory split between the CPU and GPU
+
+
+
+Linux: переменные окружения (pi[at se samo s главни букви)
+echo $HOME - ]e otpe`ata 
+HOME=/root - ще смени стойността, ако с-мата е наст да полз 
+
+export
+export HOME=/root - по-добре да се прави така
+
+echo $EDITOR - съдържа редактор по подразбиране
+export EDITOR=nano - задава редактор по подразбиране
+crontab -e - ще отвори файл с настройки на програмата кронтап в 
+
+редактора по подразбиране
+export EDITOR=vim crontab -e -ще отвори файл с настройки на 
+
+програмата кронтап в редактора vim, но редактора по 
+
+подразбиране няма да е променен (не работи в RPi)
+
+
+whereis bash или посмотрите finding bash
+
+
+Програмата Cron - изпълнява команди по разписание
+
+crontab - специален файл, който се създава за всеки потребител 
+
+и указва кога да се изпълняват тези и онези кома0нди
+
+
+
+BASH SCRIPTING
+#!/bin/bash - указва кой команден интерпретатор ще се използва
+
+
+
+#!/bin/bash
+str='I am a variable!' #ще отпечата I am a variable!
+echo $str
+
+
+
+#!/bin/bash
+echo(date +%Y%m%d) # ще отпечата YYYYmmdd!
+
+#!/bin/bash
+echo(date +%d.%m.%Y) # ще отпечата dd.mm.YYYY
+
+
+#!/bin/bash
+HELLO=Hello
+function hello {
+    local HELLO=World
+    echo HELLO
+}
+echo $HELLO
+hello
+echo $HELLO
+
+Локална променлива се декларира с local
+Около знака = не трябва да има интервали
+След името на функцията трябва да има интервал
+
+
+#!/bin/bash
+if [ "foo" = 'foo' ]; then
+    echo истина
+fi
+
+
+#!/bin/bash
+if [ 'foo' = "bar" ]; then
+    echo true
+else
+    echo false
+fi
+
+
+#!/bin/bash
+V1="foo"
+V2='bar'
+if [ $V1 = $V2 ]; then
+    echo true
+else
+    echo false
+fi
+
+#!/bin/bash
+V1="foo"
+V2='bar'
+if [ "$V1" = "$V2" ]; then
+    echo true
+else
+    echo false
+fi
+
+
+#!/bin/bash
+if [ "baba" = "dedo" ]; then
+    echo истина
+else if [ "mama" = "kaka" ]; then
+    echo mama e kato kaka
+else
+    echo kaka ne e mama
+fi
+fi
+
+
+
+
+sudo apt-get install lm-sensors 
+After installation type the following in terminal
+sudo sensors-detect
+You may also need to run
+sudo service kmod start
+
+
+
+
+
+
+It will ask you few questions. Answer Yes for all of them. 
+
+Finally to get your CPU temperature type sensors in your 
+
+terminal.
+
+
+
+WORKSHOP
+mkdir ch1 - създава дир ch1
+mkdir ch1/test1 - създава дир test1 в дир-та ch1
+cd ch1 - влиза в дир-та ch1
+mkdir test2 създава дир test2 (в дир ch1)
+cd test2 - влиза в дир-та test2
+mkdir ../test3 - създава дир test3 в родителската дир
+ls .. - листва родителската дир
+UP key
+	Pressing the UP key will print the last command entered 
+
+into the command prompt. This is a quick way to repeat previous 
+
+commands or make corrections to commands.
+
+
+	  WiringPi
+channel 1 25	   26
+channel 2 28       20
+channel 3 29       21
+
+sudo su -
+echo "26" > /sys/class/gpio/export
+echo "out" > /sys/class/gpio/gpio26/direction
+echo "0" > /sys/class/gpio/gpio26/value
+
+echo "20" > /sys/class/gpio/export
+echo "out" > /sys/class/gpio/gpio20/direction
+echo "0" > /sys/class/gpio/gpio20/value
+
+echo "21" > /sys/class/gpio/export
+echo "out" > /sys/class/gpio/gpio21/direction
+echo "0" > /sys/class/gpio/gpio21/value
+
+
+
+
+sudo su -
+echo "25" > /sys/class/gpio/export
+echo "out" > /sys/class/gpio/gpio25/direction
+echo "1" > /sys/class/gpio/gpio25/value
+echo "0" > /sys/class/gpio/gpio25/value
+
+
+
+
+
+
+Python
+https://www.tutorialspoint.com/execute_python_online.php
+
+python - влизаш в режим писане пайтън код директно в конзолата
+quit() - излизаш обратно в конзолата
+print("Hello")
+print(2 + 3)
+print(3 ** 2) stepenuwane
+print(25 // 5) broj petici w 25
+print(24 % 5) ostatyk pri delenie
+в терминала може да не пишеш принт а направа израза 
+>>> 2+3
+name = input("Как вас зовут? ")
+print("Привет ", name)
+
+
+
+FHS - Filesystem Hierarchy Standart
+shell - командна обвивка обработваща комадите въведени от юзъра
+
+
+
+=====   gpio   ============
+
+gpio readall - показва таблицата
+gpio mode 25 out - сетва пин 25 в режим изход
+gpio write 25 0  - сетва ниво 0 на пин 25
+
+
+
+Създаване на алиаси
+
+$ alias bedroom='gpio write 2 1; sleep 1; gpio write 2 0; gpio 
+
+readall'
+
+или
+
+$ alias mazze='gpio write 2 1 && sleep 1 && gpio write 2 0 && 
+
+gpio readall'
+
+
+Създаване на постоянни алиаси
+
+$ echo 'alias bedroom="gpio write 2 1; sleep 1; gpio write 2 0; 
+
+gpio readall"' >> ~/.bashrc
+$ . ~/bashrc - презарежда .bashrc т.е. обкръжението bash
+
+
+echo 'text'
+Изтриване на алиаси
+
+$ unalias aliasName
+
+
+
+
+Конзолен вариант
+
+Малко теория
+
+В Linux съществуват 7 нива на запуск. Използват се само 6.
+
+0 — Спиране или изключване на системата
+1 — Еднопотребителски режим
+2 — Многопотребителски режим, но без поддръжка на мрежа
+3 — Същото, но с мрежа
+4 — Не се използва. Добавен е за красота 
+5 — Графичен режим със стартиране на X сървъра
+6 — Рестарт
+
+В папка /etc  има папки със 7 нива на запуск.
+
+(при някои дистрибуции нивата се намират в /etc/rc.d)
+
+Например при изключване компютъра, се изпълняват всички 
+
+скриптове в папка rc0.d
+
+Самите скриптове (по-точно сценариите) в тази папка няма, а има 
+
+само връзки към файлове, които лежат в папка /etc/init.d. Тези 
+
+сценарии изпълняват различни задачи, в зависимост от параметъра 
+
+start или stop (например /etc/init.d/reboot start и 
+
+/etc/init.d/reboot stop са различни команди, а 
+
+/etc/init.d/reboot въобще няма да работи).
+Ако первая буква във връзката е S, то на сценария се подава 
+
+параметър start, а ако стои буква K (от kill), то параметърът 
+
+ще е stop. Цифра след буква указва реда на изпълнение на  
+
+сценария.
+
+Преминаваме към практика
+За добавим команди изпълняване при стартиране на ОС, трябва да 
+
+ги добавим във файл /etc/rc.local.
+
+sudo nano /etc/rc.local
+
+И пишем нашите команди малко над реда съдържащ exit 0
+
+{бел. ред.
+Директно пишеш терминал команди над exit 0
+
+gpio mode 3 out
+gpio mode 4 out
+gpio 3 0
+gpio 4 0
+
+exit 0
+}
+
+
+
+http://tuksik.ru/auto-start-and-shutdown/
+
+
+Для того, что бы команды выполнялись перед выключением или 
+
+перезагрузкой нам нужно создать сценарий в папке /etc/init.d
+sudo nano /etc/init.d/имя_сценария
+
+ ____________ ___________________
+|            |                   |
+|            |                   |
+|            |                   |
+|     X      |         X         |
+|            |                   |
+|            |                   |
+|____________|___________________|
+|      |         |
+|      |_____    |
+|      |     |   |
+|  X   |     | X |
+|      |     |   |
+|      |     |   |
+|______|_____|___|
+
+
+Скриптове
+
+Отворете текстов редактор и въведете
+
+#!/bin/bash
+echo "Hello, World"
+
+за да направите традиционния Hello, World script.
+Можете да стартирате скрипта като напишете
+точка и интервал (. ) пред името на файла.
+Ако файлът се казва hi, командата би изглеждала така:
+
+~$ . hi
+
+Другият начин е да направите скрипта изпълним:
+
+$ chmod +x hello
+
+и да го стартирате с:
+
+$ ./hello
+
+
+
+Променливи
+
+~$ var=value -> декларация и присвояване без интервали около =
+~$ echo $var -> четене (връща value)
+~$ echo '$var' -> връща $var
+~$ echo "$var" -> връща value
+~$ echo $var -> опитва да изпълни команда value и връща грешка
+~$ var2='cat txt' -> присвоява cat txt
+~$ echo $var2 -> връща 'cat txt'
+~$ $var2 -> връща резултата от cat txt т.е. изпълнява cat txt
+~$ var3=$(cat txt) -> присвоява резултата от cat txt
+~$ var3=`cat txt`  -> присвоява резултата от cat txt
+~$ echo "тoва ще изпълни командата ls $(ls)"
+
+В bash има и няколко специални променливи, които се използват 
+
+за аргументите на скрипта за обвивката.
+
+$0       - име на команда
+$1 до $9 - аргументите на скрипта
+$*       - всички аргументи от командния ред
+$@       - всички аргументи от командния ред поотделно
+$#       - броят на аргументите от командния ред
+
+
+
+Друг начин за деклариране на променливи е командата declare. 
+
+Синтаксисът на тази команда е:
+
+declare -тип име-на-променливата
+
+   Типовете променливи са:
+
+-r   - readonly
+-i   - integer (цяло число)
+-а   - array (масив)
+-x   - export
+
+   Пример:
+
+#!/bin/bash
+
+declare -i var # декларираме променлива от тип integer
+var=100
+
+
+
+
+
+
+
+
+
+
+spinbox - грамофон
+nise wave - кукър
+smao -malyk dron
+healty bar press - силиконова форма за брчта
+meat maximizer  - prekyswa` na wlakna
+erovr - количка
+kubo ел skluter
+
+
+
+
